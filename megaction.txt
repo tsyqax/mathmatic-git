@@ -1,0 +1,78 @@
+# AI가 알려준 코드인데, 확실히 알기 전까지는 쓰지 않도록 합니다.
+def tokenize(expression):
+    # 수식을 토큰으로 분리
+    tokens = []
+    current_token = ""
+    for char in expression:
+        if char.isdigit() or char == ".":
+            current_token += char
+        else:
+            if current_token != "":
+                tokens.append(current_token)
+                current_token = ""
+            if char.strip() != "":
+                tokens.append(char)
+    if current_token != "":
+        tokens.append(current_token)
+    return tokens
+
+def calculate_expression(expression):
+    tokens = tokenize(expression)
+    
+    # 우선순위를 고려하여 토큰을 계산
+    # '*'와 '/'를 먼저 계산한 후, '+'와 '-'를 계산
+    operators = {
+        "*": lambda x, y: x * y,
+        "/": lambda x, y: x / y,
+        "+": lambda x, y: x + y,
+        "-": lambda x, y: x - y
+    }
+    
+    precedence = {
+        "*": 2,
+        "/": 2,
+        "+": 1,
+        "-": 1
+    }
+    
+    operator_stack = []
+    value_stack = []
+    
+    for token in tokens:
+        if token.isdigit() or "." in token:
+            value_stack.append(float(token))
+        elif token in operators:
+            while (
+                operator_stack
+                and operator_stack[-1] != "("
+                and precedence[operator_stack[-1]] >= precedence[token]
+            ):
+                operator = operator_stack.pop()
+                operand2 = value_stack.pop()
+                operand1 = value_stack.pop()
+                result = operators[operator](operand1, operand2)
+                value_stack.append(result)
+            operator_stack.append(token)
+        elif token == "(":
+            operator_stack.append(token)
+        elif token == ")":
+            while operator_stack[-1] != "(":
+                operator = operator_stack.pop()
+                operand2 = value_stack.pop()
+                operand1 = value_stack.pop()
+                result = operators[operator](operand1, operand2)
+                value_stack.append(result)
+            operator_stack.pop()
+
+    while operator_stack:
+        operator = operator_stack.pop()
+        operand2 = value_stack.pop()
+        operand1 = value_stack.pop()
+        result = operators[operator](operand1, operand2)
+        value_stack.append(result)
+    
+    return value_stack[0] if value_stack else None
+
+expression = "(3+3)*3/4*(1+2)"
+result = calculate_expression(expression)
+print(result)
