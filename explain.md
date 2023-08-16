@@ -2,8 +2,15 @@
 코드를 설명하려고 합니다.   
 (실제로 앱에서 사용되는 코드만)
 
+---
 각 부분에는 더욱 유용한 참고를 위해, 링크를 달아두었습니다.   
 (파란색 글씨)
+
+---
+### 차례
+1. [전체 코드 확인하기](https://github.com/tsyqax/mathmatic-git/blob/main2/explain.md#%EC%A0%84%EC%B2%B4-%EC%BD%94%EB%93%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0)
+2. [본격적 코드 설명](https://github.com/tsyqax/mathmatic-git/blob/main2/explain.md#%EB%B3%B8%EA%B2%A9%EC%A0%81-%EC%BD%94%EB%93%9C-%EC%84%A4%EB%AA%85)
+3. [마치며](https://github.com/tsyqax/mathmatic-git/blob/main2/explain.md#%EB%A7%88%EC%B9%98%EB%A9%B0)
 
 
 ***
