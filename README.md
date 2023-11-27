@@ -1,5 +1,5 @@
 # MathMatic
-kivy로 제작된 간단한 계산기 앱입니다.
+kivy로 제작된 간단한 계산기 앱입니다.  
 (buildozer로 빌드되었습니다!)
 
 ***
